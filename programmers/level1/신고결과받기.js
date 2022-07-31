@@ -1,28 +1,27 @@
-function solution(id_list, report, k) {
-    const map = []
+function solution(id_list, report, k)
+{
+    const a = []
     const result = []
-    answer = []
-    id_list.forEach(v => {
-        map[v] = []
-        result[v] = 0
+    const answer = []
+    id_list.map(x => {
+        a[x] = new Set()
+        result[x] = 0
     })
-    report.forEach(v => {
-        r = v.split(' ');
-        map[r[1]].push(r[0])
+    report.map(v => {
+        v = v.split(' ')
+        a[v[1]].add(v[0])
     })
-    id_list.forEach(v => {
-        a = new Set(map[v]) 
-        if (a.size >= k) {
-            a.forEach(i => {
+    id_list.map(x => {
+        if (a[x].size >= k) {
+            a[x].forEach(i => {
                 result[i] += 1
             })
         }
     })
-    for (let key of Object.keys(result)) 
+    for (let key of Object.keys(result))
     {
         answer.push(result[key])
     }
     return answer
 }
-
-solution(["con", "ryan"], ["ryan con", "ryan con", "ryan con", "ryan con"], 2)
+solution(["muzi", "frodo", "apeach", "neo"], ["muzi frodo", "apeach frodo", "frodo neo", "muzi neo", "apeach muzi"], 2)
